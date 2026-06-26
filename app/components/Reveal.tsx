@@ -27,10 +27,10 @@ export function Reveal({ children, delay = 0, whileHover, className, style, id }
       id={id}
       className={className}
       style={style}
-      initial={reduce ? false : { opacity: 0, y: 42 }}
+      initial={reduce ? false : { opacity: 0, y: 24 }}
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.14 }}
-      transition={{ duration: 0.9, ease: EASE, delay: delay / 1000 }}
+      transition={{ duration: 0.7, ease: EASE, delay: delay / 1000 }}
       whileHover={reduce ? undefined : whileHover}
     >
       {children}
