@@ -1,26 +1,316 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-space: var(--font-space);
+  --font-manrope: var(--font-manrope);
+  --font-bebas: var(--font-bebas);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #f2f0eb;
+  color: #0a0a0a;
+  font-family: var(--font-manrope), sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* #scroll-root is the snap scroll container (set inline in page.tsx). */
+.scroll-root {
+  scrollbar-width: none; /* Firefox */
+}
+.scroll-root::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-root {
+    scroll-snap-type: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background: #0a0a0a;
+  color: #f0eee8;
+}
+
+/* ---------- Animations ---------- */
+@keyframes drift1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(80px, 60px) scale(1.15);
+  }
+}
+@keyframes drift2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-90px, 40px) scale(1.2);
+  }
+}
+@keyframes drift3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -70px) scale(1.1);
+  }
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes cue {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+@media (pointer: coarse) {
+  [data-cursor-dot],
+  [data-cursor-ring] {
+    display: none !important;
+  }
+}
+
+/* ---------- Ambient background orbs (autonomous float) ---------- */
+@keyframes orbDiagonal {
+  0%,
+  100% {
+    transform: translate(-8%, -8%);
+  }
+  50% {
+    transform: translate(28%, 36%);
+  }
+}
+@keyframes orbCircular {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(140px, 140px);
+  }
+  50% {
+    transform: translate(0, 280px);
+  }
+  75% {
+    transform: translate(-140px, 140px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes orbVertical {
+  0%,
+  100% {
+    transform: translateY(-9%);
+  }
+  50% {
+    transform: translateY(13%);
+  }
+}
+@keyframes orbWander {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  33% {
+    transform: translate(-120px, 80px);
+  }
+  66% {
+    transform: translate(90px, -60px);
+  }
+}
+@keyframes orbSway {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(60px, -90px) scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [style*="orbDiagonal"],
+  [style*="orbCircular"],
+  [style*="orbVertical"],
+  [style*="orbWander"],
+  [style*="orbSway"] {
+    animation: none !important;
+  }
+}
+
+/* ---------- Hover states (inline styles can't do :hover) ---------- */
+.nav-link {
+  color: rgba(0, 0, 0, 0.4);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-link:hover {
+  color: rgba(0, 0, 0, 0.85);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.footer-link {
+  color: rgba(0, 0, 0, 0.35);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-link:hover {
+  color: rgba(0, 0, 0, 0.85);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.btn-outline {
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+.btn-outline:hover {
+  background: #0a0a0a;
+  border-color: #0a0a0a;
+  color: #f0eee8;
+}
+
+.btn-grad {
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.btn-grad:hover {
+  box-shadow: 0 16px 50px -8px rgba(0, 0, 0, 0.25);
+}
+
+.btn-ghost {
+  transition: border-color 0.25s;
+}
+.btn-ghost:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.link-underline {
+  transition: color 0.2s, border-color 0.2s;
+}
+.link-underline:hover {
+  color: #0a0a0a;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Integrated cards: hover lifts the surface and the border.
+   Framer-motion whileHover owns the transform; color/bg stay in CSS. */
+.service-card {
+  transition: border-color 0.4s ease, background 0.4s ease;
+}
+.service-card:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: #e2ded6;
+}
+
+.gallery-tile {
+  transition: border-color 0.4s ease, background 0.4s ease;
+}
+.gallery-tile:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: #e2ded6;
+}
+
+.contact-cta {
+  transition: box-shadow 0.3s;
+}
+.contact-cta:hover {
+  box-shadow: 0 18px 56px -8px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- Side dot navigation ---------- */
+.scroll-dot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: none;
+  border: 0;
+  padding: 6px 4px;
+}
+.scroll-dot-mark {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.scroll-dot-label {
+  position: absolute;
+  right: 24px;
+  white-space: nowrap;
+  font-family: var(--font-space), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.25s, transform 0.25s, color 0.25s;
+  pointer-events: none;
+}
+.scroll-dot:hover .scroll-dot-label,
+.scroll-dot[aria-current="true"] .scroll-dot-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+.scroll-dot[aria-current="true"] .scroll-dot-label {
+  color: #0a0a0a;
+}
+
+/* ---------- Responsive: collapse complex grids on mobile ---------- */
+@media (max-width: 860px) {
+  .nav-links {
+    display: none !important;
+  }
+  .scroll-dots {
+    display: none !important;
+  }
+  .events-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .about-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .stats-row {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px !important;
+  }
 }
