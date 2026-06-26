@@ -458,7 +458,7 @@ export default function Home() {
             <Reveal
               delay={120}
               style={{
-                background: CARD_BG,
+                background: "#E2DED6",
                 border: BORDER,
                 borderRadius: 16,
                 minHeight: "clamp(220px,32vh,320px)",
