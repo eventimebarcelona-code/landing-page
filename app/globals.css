@@ -236,16 +236,34 @@ button:focus-visible {
 
 /* Integrated cards: base surface + border live here (not inline) so the
    :hover can actually override them. Framer-motion whileHover owns the lift. */
-.service-card,
-.gallery-tile {
+.service-card {
   background: #eae7e0;
   border: 0.5px solid rgba(0, 0, 0, 0.06);
   transition: border-color 0.4s ease, background 0.4s ease;
 }
-.service-card:hover,
-.gallery-tile:hover {
+.service-card:hover {
   border-color: rgba(0, 0, 0, 0.15);
   background: #e2ded6;
+}
+
+/* Gallery photos: the image zooms on hover (clipped by the tile's overflow)
+   and a subtle dark overlay fades in. No text on the photos. */
+.gallery-photo .gallery-img {
+  transition: transform 0.6s ease;
+}
+.gallery-photo:hover .gallery-img {
+  transform: scale(1.04);
+}
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+.gallery-photo:hover .gallery-overlay {
+  opacity: 1;
 }
 
 .contact-cta {

@@ -35,11 +35,10 @@ const stats = [
   { value: 8, suffix: "", label: "Años" },
 ];
 
-const gallery = [
-  { label: "Aftermovie", span: { gridColumn: "span 2", gridRow: "span 2" }, delay: 0 },
-  { label: "Público", span: { gridColumn: "span 2" }, delay: 80 },
-  { label: "Escenario", span: {}, delay: 160 },
-  { label: "Luces", span: {}, delay: 220 },
+const gallery: { src: string; span: CSSProperties; delay: number }[] = [
+  { src: "/500542190_4115875561967357_2471842936655101842_n.jpg", span: { gridRow: "span 2" }, delay: 0 },
+  { src: "/500557235_4115875335300713_4267228830999679837_n.jpg", span: {}, delay: 80 },
+  { src: "/501352365_4115875305300716_5277429254778302294_n.jpg", span: {}, delay: 160 },
 ];
 
 const navLinks = [
@@ -379,19 +378,28 @@ export default function Home() {
             className="gallery-grid"
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(4,1fr)",
-              gridAutoRows: "clamp(130px,18vh,190px)",
-              gap: 1,
+              gridTemplateColumns: "repeat(2,1fr)",
+              gridAutoRows: "clamp(150px,24vh,260px)",
+              gap: 10,
+              width: "100%",
             }}
           >
             {gallery.map((g) => (
               <Reveal
-                key={g.label}
+                key={g.src}
                 delay={g.delay}
-                className="gallery-tile"
-                style={{ ...galleryTile, ...g.span }}
+                className="gallery-photo"
+                style={{ position: "relative", overflow: "hidden", borderRadius: 16, ...g.span }}
               >
-                <span style={microLabel}>{g.label}</span>
+                <Image
+                  src={g.src}
+                  alt="Eventime Sound en directo"
+                  fill
+                  sizes="(max-width: 860px) 50vw, 50vw"
+                  className="gallery-img"
+                  style={{ objectFit: "cover" }}
+                />
+                <span className="gallery-overlay" />
               </Reveal>
             ))}
           </div>
@@ -631,15 +639,6 @@ const microLabel: CSSProperties = {
   letterSpacing: "4px",
   textTransform: "uppercase",
   color: FAINT,
-};
-
-const galleryTile: CSSProperties = {
-  position: "relative",
-  overflow: "hidden",
-  display: "flex",
-  alignItems: "flex-end",
-  justifyContent: "flex-start",
-  padding: 24,
 };
 
 function eyebrow(): CSSProperties {
