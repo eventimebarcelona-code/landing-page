@@ -351,7 +351,7 @@ export default function Home() {
                   gap: 32,
                   padding: 40,
                   border: CARD_BORDER,
-                  borderRadius: 14,
+                  borderRadius: 16,
                   background: CARD_BG,
                 }}
               >
@@ -417,7 +417,7 @@ export default function Home() {
                 delay={sv.delay}
                 whileHover={{ y: -4 }}
                 className="service-card"
-                style={{ padding: 40, border: CARD_BORDER, borderRadius: 14, background: CARD_BG }}
+                style={{ padding: 40, border: CARD_BORDER, borderRadius: 16, background: CARD_BG }}
               >
                 <div style={{ fontFamily: SPACE, fontWeight: 500, fontSize: 13, letterSpacing: ".1em", color: FAINT, marginBottom: 24 }}>
                   {sv.num}
