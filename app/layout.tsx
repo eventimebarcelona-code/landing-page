@@ -24,6 +24,11 @@ export const metadata: Metadata = {
   title: "Eventime Sound — Productora de eventos en directo",
   description:
     "Creamos experiencias de concierto inolvidables. Producción, sonido y line-ups que hacen vibrar a miles de personas.",
+  icons: {
+    icon: "/EVENTIME sound LOGO.png",
+    shortcut: "/EVENTIME sound LOGO.png",
+    apple: "/EVENTIME sound LOGO.png",
+  },
 };
 
 export default function RootLayout({
