@@ -78,9 +78,8 @@ const PAD = "clamp(24px,6vw,80px)";
 // so their :hover can override them; inline styles can't be overridden by :hover.
 const BORDER = "0.5px solid rgba(0,0,0,.06)";
 const HAIRLINE = "0.5px solid rgba(0,0,0,.06)"; // nav / footer / ticker separators
-const SURFACE = "#EAE7E0"; // footer + ticker surface
-const MUTED = "rgba(0,0,0,.45)";
-const FAINT = "rgba(0,0,0,.25)";
+const MUTED = "rgba(0,0,0,.45)"; // secondary text
+const FAINT = "rgba(0,0,0,.25)"; // tertiary text / micro-labels / separators
 // Alternating section tints: odd sections show the base #F2F0EB, even sections
 // are darkened ~3% so they read a touch deeper while letting the grain/orbs show through.
 const EVEN_BG = "rgba(0,0,0,0.03)";
@@ -219,7 +218,7 @@ export default function Home() {
             }}
           >
             <span style={{ display: "block" }}>EVENTIME</span>
-            <span style={{ display: "block", color: "rgba(0,0,0,.45)" }}>SOUND</span>
+            <span style={{ display: "block", color: MUTED }}>SOUND</span>
           </h1>
           <p
             style={{
@@ -260,7 +259,7 @@ export default function Home() {
                 textDecoration: "none",
                 padding: "15px 30px",
                 borderRadius: 100,
-                border: "1px solid rgba(0,0,0,.15)",
+                border: "1px solid rgba(0,0,0,.06)",
               }}
             >
               Reserva tu evento
@@ -292,7 +291,7 @@ export default function Home() {
               fontWeight: 500,
               fontSize: "clamp(18px,3vw,34px)",
               letterSpacing: ".04em",
-              color: "rgba(0,0,0,.2)",
+              color: FAINT,
               animation: "marquee 24s linear infinite",
               willChange: "transform",
             }}
@@ -328,7 +327,7 @@ export default function Home() {
                 textDecoration: "none",
                 fontSize: 13,
                 fontWeight: 400,
-                borderBottom: "1px solid rgba(0,0,0,.15)",
+                borderBottom: "1px solid rgba(0,0,0,.06)",
                 paddingBottom: 4,
               }}
             >
@@ -431,7 +430,7 @@ export default function Home() {
       </section>
 
       {/* NOSOTROS */}
-      <section id="nosotros" style={{ ...sectionStyle, background: SURFACE }}>
+      <section id="nosotros" style={sectionStyle}>
         <div style={contentWrap}>
           <div
             className="about-grid"
@@ -512,15 +511,12 @@ export default function Home() {
         style={{
           position: "relative",
           zIndex: 2,
-          height: "100vh",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
-          padding: `48px ${PAD}`,
-          background: SURFACE,
+          padding: `32px ${PAD} 24px`,
           borderTop: HAIRLINE,
           overflow: "hidden",
-          scrollSnapAlign: "start",
+          scrollSnapAlign: "end",
           scrollSnapStop: "always",
         }}
       >
@@ -553,30 +549,30 @@ export default function Home() {
             position: "relative",
             maxWidth: 1240,
             width: "100%",
-            margin: "clamp(40px,7vh,72px) auto 0",
+            margin: "32px auto 0",
             display: "flex",
             flexWrap: "wrap",
             alignItems: "center",
             justifyContent: "space-between",
-            gap: 24,
-            paddingTop: 28,
+            gap: 16,
+            paddingTop: 20,
             borderTop: HAIRLINE,
           }}
         >
           <a href="#top" style={brandStyle}>
-            <Image src="/EVENTIME sound LOGO.png" alt="Eventime Sound" height={32} width={133} />
+            <Image src="/EVENTIME sound LOGO.png" alt="Eventime Sound" height={28} width={117} />
           </a>
-          <div style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 11, letterSpacing: "1px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 11, letterSpacing: "1px" }}>
             {footerLinks.map(([href, label], i) => (
-              <span key={label} style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                {i > 0 && <span style={{ color: "rgba(0,0,0,.18)" }}>·</span>}
+              <span key={label} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                {i > 0 && <span style={{ color: FAINT }}>·</span>}
                 <a href={href} className="footer-link">
                   {label}
                 </a>
               </span>
             ))}
           </div>
-          <div style={{ fontSize: 11, color: "rgba(0,0,0,.35)" }}>© 2026 Eventime Sound</div>
+          <div style={{ fontSize: 11, color: MUTED }}>© 2026 Eventime Sound</div>
         </div>
       </footer>
     </div>

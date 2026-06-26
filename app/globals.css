@@ -50,7 +50,7 @@ body {
    focus indicator. Only show it for keyboard focus, not mouse clicks. */
 a:focus-visible,
 button:focus-visible {
-  outline: 1px solid rgba(0, 0, 0, 0.5);
+  outline: 1px solid rgba(0, 0, 0, 0.45);
   outline-offset: 4px;
   border-radius: 2px;
 }
@@ -180,7 +180,7 @@ button:focus-visible {
 
 /* ---------- Hover states (inline styles can't do :hover) ---------- */
 .nav-link {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.45);
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -192,7 +192,7 @@ button:focus-visible {
 }
 
 .footer-link {
-  color: rgba(0, 0, 0, 0.35);
+  color: rgba(0, 0, 0, 0.45);
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -239,12 +239,12 @@ button:focus-visible {
 .service-card,
 .gallery-tile {
   background: #eae7e0;
-  border: 0.5px solid rgba(0, 0, 0, 0.07);
+  border: 0.5px solid rgba(0, 0, 0, 0.06);
   transition: border-color 0.4s ease, background 0.4s ease;
 }
 .service-card:hover,
 .gallery-tile:hover {
-  border-color: rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 0, 0, 0.15);
   background: #e2ded6;
 }
 
