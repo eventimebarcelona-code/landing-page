@@ -234,19 +234,15 @@ button:focus-visible {
   border-color: rgba(0, 0, 0, 0.15);
 }
 
-/* Integrated cards: hover lifts the surface and the border.
-   Framer-motion whileHover owns the transform; color/bg stay in CSS. */
-.service-card {
-  transition: border-color 0.4s ease, background 0.4s ease;
-}
-.service-card:hover {
-  border-color: rgba(0, 0, 0, 0.12);
-  background: #e2ded6;
-}
-
+/* Integrated cards: base surface + border live here (not inline) so the
+   :hover can actually override them. Framer-motion whileHover owns the lift. */
+.service-card,
 .gallery-tile {
+  background: #eae7e0;
+  border: 0.5px solid rgba(0, 0, 0, 0.07);
   transition: border-color 0.4s ease, background 0.4s ease;
 }
+.service-card:hover,
 .gallery-tile:hover {
   border-color: rgba(0, 0, 0, 0.12);
   background: #e2ded6;

@@ -74,8 +74,8 @@ function tickerInner() {
 const SPACE = "var(--font-space), sans-serif";
 const BEBAS = "var(--font-bebas), sans-serif";
 const PAD = "clamp(24px,6vw,80px)";
-const CARD_BG = "#EAE7E0"; // card surface on the #F2F0EB base
-const CARD_BORDER = "0.5px solid rgba(0,0,0,.07)";
+// Card surface + border now live in globals.css (.service-card / .gallery-tile)
+// so their :hover can override them; inline styles can't be overridden by :hover.
 const BORDER = "0.5px solid rgba(0,0,0,.06)";
 const HAIRLINE = "0.5px solid rgba(0,0,0,.06)"; // nav / footer / ticker separators
 const SURFACE = "#EAE7E0"; // footer + ticker surface
@@ -350,9 +350,7 @@ export default function Home() {
                   flexWrap: "wrap",
                   gap: 32,
                   padding: 40,
-                  border: CARD_BORDER,
                   borderRadius: 16,
-                  background: CARD_BG,
                 }}
               >
                 <div>
@@ -417,7 +415,7 @@ export default function Home() {
                 delay={sv.delay}
                 whileHover={{ y: -4 }}
                 className="service-card"
-                style={{ padding: 40, border: CARD_BORDER, borderRadius: 16, background: CARD_BG }}
+                style={{ padding: 40, borderRadius: 16 }}
               >
                 <div style={{ fontFamily: SPACE, fontWeight: 500, fontSize: 13, letterSpacing: ".1em", color: FAINT, marginBottom: 24 }}>
                   {sv.num}
@@ -642,8 +640,6 @@ const microLabel: CSSProperties = {
 const galleryTile: CSSProperties = {
   position: "relative",
   overflow: "hidden",
-  background: CARD_BG,
-  border: CARD_BORDER,
   display: "flex",
   alignItems: "flex-end",
   justifyContent: "flex-start",
