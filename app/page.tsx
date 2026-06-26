@@ -394,7 +394,7 @@ export default function Home() {
                 className="gallery-tile"
                 style={{ ...galleryTile, ...g.span }}
               >
-                <span style={tileLabel}>{g.label}</span>
+                <span style={microLabel}>{g.label}</span>
               </Reveal>
             ))}
           </div>
@@ -648,15 +648,6 @@ const galleryTile: CSSProperties = {
   alignItems: "flex-end",
   justifyContent: "flex-start",
   padding: 24,
-};
-
-const tileLabel: CSSProperties = {
-  fontFamily: SPACE,
-  fontSize: 11,
-  fontWeight: 400,
-  letterSpacing: "3px",
-  color: "rgba(0,0,0,.25)",
-  textTransform: "uppercase",
 };
 
 function eyebrow(): CSSProperties {
