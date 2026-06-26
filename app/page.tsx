@@ -645,8 +645,9 @@ const galleryTile: CSSProperties = {
   background: CARD_BG,
   border: CARD_BORDER,
   display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+  alignItems: "flex-end",
+  justifyContent: "flex-start",
+  padding: 24,
 };
 
 const tileLabel: CSSProperties = {
