@@ -46,6 +46,15 @@ body {
   color: #f0eee8;
 }
 
+/* The custom cursor sets `cursor: none`, so keyboard users need a clear
+   focus indicator. Only show it for keyboard focus, not mouse clicks. */
+a:focus-visible,
+button:focus-visible {
+  outline: 1px solid rgba(0, 0, 0, 0.5);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
 /* ---------- Animations ---------- */
 @keyframes drift1 {
   0%,
