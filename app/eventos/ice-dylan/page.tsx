@@ -8,8 +8,8 @@ import { GrainOverlay } from "../../components/GrainOverlay";
 import { Cursor } from "../../components/Cursor";
 
 export const metadata: Metadata = {
-  title: "Ice Dylan — Eventime Sound",
-  description: "Ice Dylan en directo · 30 AGO 2026 · Downtown, Barcelona.",
+  title: "Ya Ice Dilan — Eventime Sound",
+  description: "Ya Ice Dilan en directo · 30 AGO 2026 · Downtown, Barcelona.",
 };
 
 const SPACE = "var(--font-space), sans-serif";
@@ -19,11 +19,12 @@ const FAINT = "rgba(0,0,0,.25)";
 const HAIRLINE = "1px solid rgba(0,0,0,0.08)";
 
 const songs = [
-  { n: "01", title: "BZRP Music Sessions #45", time: "3:12" },
-  { n: "02", title: "Solo", time: "2:58" },
-  { n: "03", title: "Mentirosa", time: "3:24" },
-  { n: "04", title: "No Me Falles", time: "2:47" },
-  { n: "05", title: "Freestyle", time: "4:01" },
+  { n: "01", title: "Dichavate", plays: "83.5M plays" },
+  { n: "02", title: "Tienes (Remix)", plays: "16.7M plays" },
+  { n: "03", title: "Dame Un AAA (Tita)", plays: "4.3M plays" },
+  { n: "04", title: "Dándola", plays: "2.6M plays" },
+  { n: "05", title: "P2ta Mia", plays: "2.9M plays" },
+  { n: "06", title: "Abusadora", plays: "4.4M plays" },
 ];
 
 const eyebrow: CSSProperties = {
@@ -92,7 +93,7 @@ export default function IceDylanPage() {
       >
         <Image
           src="/ICE_DILAN.jpg"
-          alt="Ice Dylan"
+          alt="Ya Ice Dilan"
           fill
           priority
           sizes="(max-width: 860px) 100vw, 40vw"
@@ -126,7 +127,7 @@ export default function IceDylanPage() {
               color: "#0a0a0a",
             }}
           >
-            Ice Dylan
+            Ya Ice Dilan
           </h1>
           <div style={{ fontSize: 18, fontWeight: 300, color: MUTED, marginTop: 10 }}>
             Downtown · Barcelona
@@ -142,17 +143,31 @@ export default function IceDylanPage() {
               fontWeight: 300,
               color: "#0a0a0a",
               lineHeight: 1.75,
-              margin: "0 0 56px",
+              margin: "0 0 28px",
               maxWidth: "62ch",
             }}
           >
-            Ice Dylan es uno de los raperos urbanos más explosivos del momento.
-            Conocido por su flow directo, sus letras callejeras y una energía en
-            directo que arrastra a cualquier crowd. Criado entre las calles de
-            Madrid, su música mezcla trap, drill y rap español con una
-            autenticidad que lo ha llevado a ser uno de los nombres más buscados
-            de la escena.
+            Ya Ice Dilan es un artista cubano de trap y música urbana que ha
+            conquistado la escena hispanohablante con su flow directo y su
+            carisma arrollador. Desde sus inicios en Cuba hasta consolidarse
+            como uno de los nombres más sonados del trap latino, su música
+            conecta con una generación que busca autenticidad.
           </p>
+          <div
+            style={{
+              display: "inline-flex",
+              fontSize: 13,
+              fontWeight: 400,
+              letterSpacing: "1px",
+              color: MUTED,
+              padding: "12px 18px",
+              border: HAIRLINE,
+              borderRadius: 100,
+              marginBottom: 56,
+            }}
+          >
+            30 AGO 2026 · Downtown Barcelona · Puertas 21:00h
+          </div>
 
           {/* Canciones destacadas */}
           <h2 style={sectionLabel}>Canciones destacadas</h2>
@@ -178,7 +193,7 @@ export default function IceDylanPage() {
                 <span
                   style={{ fontSize: 14, color: MUTED, fontVariantNumeric: "tabular-nums", flexShrink: 0 }}
                 >
-                  {s.time}
+                  {s.plays}
                 </span>
               </div>
             ))}

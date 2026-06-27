@@ -19,7 +19,7 @@ import { Particles } from "./components/Particles";
 import { GrainOverlay } from "./components/GrainOverlay";
 
 const events = [
-  { date: "30 AGO", name: "Ice Dylan", venue: "Downtown · Barcelona", status: "Entradas", href: "/eventos/ice-dylan" },
+  { date: "30 AGO", name: "Ya Ice Dilan", venue: "Downtown · Barcelona", status: "Entradas", href: "/eventos/ice-dylan" },
 ];
 
 const services = [
