@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, type CSSProperties } from "react";
+import { useRef, type CSSProperties } from "react";
 import {
   motion,
-  useMotionValueEvent,
   useReducedMotion,
   useScroll,
   useTransform,
@@ -90,9 +89,6 @@ export default function Home() {
   // (not the window) for the progress bar, nav blur and hero parallax.
   const { scrollY, scrollYProgress } = useScroll({ container: scrollRef });
 
-  const [scrolled, setScrolled] = useState(false);
-  useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 40));
-
   const bgY = useTransform(scrollY, (v) => (reduce ? 0 : v * 0.35));
   const contentY = useTransform(scrollY, (v) => (reduce ? 0 : v * 0.14));
   const contentOpacity = useTransform(
@@ -152,11 +148,9 @@ export default function Home() {
           alignItems: "center",
           justifyContent: "space-between",
           padding: `16px ${PAD}`,
-          borderBottom: scrolled ? HAIRLINE : "0.5px solid transparent",
-          background: scrolled ? "rgba(242,240,235,.85)" : "transparent",
-          backdropFilter: scrolled ? "blur(16px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
-          transition: "background .3s ease,border-color .3s ease",
+          background: "transparent",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
         }}
       >
         <a href="#top" style={brandStyle}>
@@ -169,6 +163,22 @@ export default function Home() {
                 {label}
               </a>
             ))}
+            <a
+              href="https://www.artspacebarcelona.com"
+              className="nav-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Estudio
+            </a>
+            <a
+              href="https://www.zerogamesrecords.es"
+              className="nav-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Label
+            </a>
           </div>
           <Magnetic
             href="#contacto"
