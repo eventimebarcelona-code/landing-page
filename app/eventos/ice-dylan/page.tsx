@@ -19,12 +19,12 @@ const FAINT = "rgba(0,0,0,.25)";
 const HAIRLINE = "1px solid rgba(0,0,0,0.08)";
 
 const songs = [
-  { n: "01", title: "Dichavate", plays: "83.5M plays" },
-  { n: "02", title: "Tienes (Remix)", plays: "16.7M plays" },
-  { n: "03", title: "Dame Un AAA (Tita)", plays: "4.3M plays" },
-  { n: "04", title: "Dándola", plays: "2.6M plays" },
-  { n: "05", title: "P2ta Mia", plays: "2.9M plays" },
-  { n: "06", title: "Abusadora", plays: "4.4M plays" },
+  { n: "01", title: "Dichavate", plays: "83.5M streams" },
+  { n: "02", title: "Tienes (Remix)", plays: "16.7M streams" },
+  { n: "03", title: "Dame Un AAA (Tita)", plays: "4.3M streams" },
+  { n: "04", title: "Dándola", plays: "2.6M streams" },
+  { n: "05", title: "P2ta Mia", plays: "2.9M streams" },
+  { n: "06", title: "Abusadora", plays: "4.4M streams" },
 ];
 
 const eyebrow: CSSProperties = {
@@ -200,23 +200,50 @@ export default function IceDylanPage() {
             ))}
           </div>
 
-          {/* CTA */}
-          <a
-            href="#"
-            className="contact-cta"
-            style={{
-              display: "inline-block",
-              fontSize: 16,
-              fontWeight: 500,
-              color: "#F0EEE8",
-              textDecoration: "none",
-              padding: "18px 40px",
-              borderRadius: 100,
-              background: "#0a0a0a",
-            }}
-          >
-            Comprar entradas
-          </a>
+          {/* CTAs */}
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 16 }}>
+            <a
+              href="#"
+              className="contact-cta"
+              style={{
+                display: "inline-block",
+                fontSize: 16,
+                fontWeight: 500,
+                color: "#F0EEE8",
+                textDecoration: "none",
+                padding: "18px 40px",
+                borderRadius: 100,
+                background: "#0a0a0a",
+              }}
+            >
+              Comprar entradas
+            </a>
+            <a
+              href="https://open.spotify.com/intl-es/artist/3EumQuYai5g1235jIBaPhA?si=Tu7eUj80QTKTJJt2TXi-FQ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="spotify-btn"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 10,
+                fontSize: 13,
+                fontWeight: 600,
+                letterSpacing: "1px",
+                textTransform: "uppercase",
+                color: "#ffffff",
+                textDecoration: "none",
+                padding: "14px 32px",
+                borderRadius: 100,
+                background: "#1DB954",
+              }}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.52 17.34c-.24.36-.66.48-1.02.24-2.82-1.74-6.36-2.1-10.56-1.14-.42.12-.78-.18-.9-.54-.12-.42.18-.78.54-.9 4.56-1.02 8.52-.6 11.64 1.32.42.18.48.66.3 1.02zm1.44-3.3c-.3.42-.84.6-1.26.3-3.24-1.98-8.16-2.58-11.94-1.38-.48.12-1.02-.12-1.14-.6-.12-.48.12-1.02.6-1.14 4.38-1.32 9.78-.66 13.5 1.62.36.18.54.78.24 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.1 9.3c-.6.18-1.2-.18-1.38-.72-.18-.6.18-1.2.72-1.38 4.32-1.26 11.34-1.02 15.78 1.62.54.3.72 1.02.42 1.56-.3.42-1.02.6-1.56.3z" />
+              </svg>
+              Escuchar en Spotify
+            </a>
+          </div>
         </div>
       </div>
     </div>

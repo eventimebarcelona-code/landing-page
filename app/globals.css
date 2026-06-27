@@ -288,6 +288,13 @@ button:focus-visible {
   box-shadow: 0 18px 56px -8px rgba(0, 0, 0, 0.25);
 }
 
+.spotify-btn {
+  transition: opacity 0.2s ease;
+}
+.spotify-btn:hover {
+  opacity: 0.85;
+}
+
 /* ---------- Side dot navigation ---------- */
 .scroll-dot {
   position: relative;
