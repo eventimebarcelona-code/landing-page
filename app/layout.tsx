@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Manrope, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 
@@ -29,6 +29,13 @@ export const metadata: Metadata = {
     shortcut: "/EVENTIME sound LOGO.png",
     apple: "/EVENTIME sound LOGO.png",
   },
+};
+
+// Match the mobile browser chrome to the page and declare the light scheme so
+// the UA doesn't dark-invert form controls/scrollbars.
+export const viewport: Viewport = {
+  themeColor: "#F2F0EB",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
