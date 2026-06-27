@@ -63,28 +63,29 @@ export default function IceDylanPage() {
       <GrainOverlay />
       <Cursor />
 
-      {/* NAV — transparent, back link top-left */}
-      <nav
+      {/* No nav bar on this page — only a floating back button over the photo */}
+      <Link
+        href="/"
         style={{
           position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 900,
-          padding: "16px clamp(24px,6vw,80px)",
-          background: "transparent",
+          top: 32,
+          left: 32,
+          zIndex: 9990,
+          color: "#ffffff",
+          background: "rgba(0,0,0,0.3)",
           backdropFilter: "blur(8px)",
           WebkitBackdropFilter: "blur(8px)",
+          padding: "10px 20px",
+          borderRadius: 100,
+          fontSize: 12,
+          fontWeight: 400,
+          letterSpacing: "2px",
+          textTransform: "uppercase",
+          textDecoration: "none",
         }}
       >
-        <Link
-          href="/"
-          className="nav-link"
-          style={{ fontSize: 11, fontWeight: 400, letterSpacing: "2px", textDecoration: "none" }}
-        >
-          ← Volver
-        </Link>
-      </nav>
+        ← Volver
+      </Link>
 
       {/* LEFT — photo, full height */}
       <div
