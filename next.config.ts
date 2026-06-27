@@ -1,10 +1,8 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  images: {
-    // The logo is an SVG served from /public; allow next/image to handle it.
-    dangerouslyAllowSVG: true,
-  },
-};
+// No remote image domains are allowed, and no SVG is served through the image
+// optimizer (logo is PNG, gallery photos are JPG), so `dangerouslyAllowSVG`
+// is intentionally left off to avoid the SVG-via-optimizer XSS surface.
+const nextConfig: NextConfig = {};
 
 export default nextConfig;
