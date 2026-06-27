@@ -26,11 +26,14 @@ body {
   overflow: hidden;
 }
 
-/* #scroll-root is the snap scroll container (set inline in page.tsx). */
-.scroll-root {
+/* #scroll-root is the snap scroll container (set inline in page.tsx).
+   .event-root is the scroll container of the event detail page. */
+.scroll-root,
+.event-root {
   scrollbar-width: none; /* Firefox */
 }
-.scroll-root::-webkit-scrollbar {
+.scroll-root::-webkit-scrollbar,
+.event-root::-webkit-scrollbar {
   display: none; /* Chrome/Safari */
 }
 
@@ -347,5 +350,16 @@ button:focus-visible {
   .stats-row {
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 24px !important;
+  }
+  /* Event detail: stack the photo above the content on small screens. */
+  .event-photo {
+    position: relative !important;
+    width: 100% !important;
+    height: 45vh !important;
+  }
+  .event-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 32px 24px 64px !important;
   }
 }

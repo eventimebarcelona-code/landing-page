@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef, type CSSProperties } from "react";
 import {
   motion,
@@ -18,7 +19,7 @@ import { Particles } from "./components/Particles";
 import { GrainOverlay } from "./components/GrainOverlay";
 
 const events = [
-  { date: "30 AGO", name: "Ice Dylan", venue: "Downtown · Barcelona", status: "Entradas" },
+  { date: "30 AGO", name: "Ice Dylan", venue: "Downtown · Barcelona", status: "Entradas", href: "/eventos/ice-dylan" },
 ];
 
 const services = [
@@ -346,32 +347,36 @@ export default function Home() {
 
           <div className="events-grid" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             {events.map((ev, i) => (
-              <Reveal
-                key={ev.name}
-                delay={i * 80}
-                whileHover={{ y: -4 }}
-                className="service-card"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  flexWrap: "wrap",
-                  gap: 32,
-                  padding: 40,
-                  borderRadius: 16,
-                }}
-              >
-                <div>
-                  <div style={{ ...microLabel, marginBottom: 16 }}>{ev.date}</div>
-                  <div style={{ fontFamily: SPACE, fontWeight: 600, fontSize: "clamp(26px,3vw,42px)", letterSpacing: "-.02em", lineHeight: 1, color: "#0a0a0a" }}>
-                    {ev.name}
+              <Link key={ev.name} href={ev.href} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
+                <Reveal
+                  delay={i * 80}
+                  whileHover={{ y: -4 }}
+                  className="service-card"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    flexWrap: "wrap",
+                    gap: 32,
+                    padding: 40,
+                    borderRadius: 16,
+                  }}
+                >
+                  <div>
+                    <div style={{ ...microLabel, marginBottom: 16 }}>{ev.date}</div>
+                    <div style={{ fontFamily: SPACE, fontWeight: 600, fontSize: "clamp(26px,3vw,42px)", letterSpacing: "-.02em", lineHeight: 1, color: "#0a0a0a" }}>
+                      {ev.name}
+                    </div>
                   </div>
-                </div>
-                <div style={{ textAlign: "right" }}>
-                  <div style={{ fontSize: 14, fontWeight: 300, color: MUTED, marginBottom: 12 }}>{ev.venue}</div>
-                  <span style={microLabel}>{ev.status}</span>
-                </div>
-              </Reveal>
+                  <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
+                    <div style={{ textAlign: "right" }}>
+                      <div style={{ fontSize: 14, fontWeight: 300, color: MUTED, marginBottom: 12 }}>{ev.venue}</div>
+                      <span style={microLabel}>{ev.status}</span>
+                    </div>
+                    <span aria-hidden="true" style={{ fontFamily: SPACE, fontSize: 22, color: MUTED, lineHeight: 1 }}>→</span>
+                  </div>
+                </Reveal>
+              </Link>
             ))}
           </div>
         </div>
