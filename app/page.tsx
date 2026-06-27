@@ -79,10 +79,6 @@ const BORDER = "0.5px solid rgba(0,0,0,.06)";
 const HAIRLINE = "0.5px solid rgba(0,0,0,.06)"; // nav / footer / ticker separators
 const MUTED = "rgba(0,0,0,.45)"; // secondary text
 const FAINT = "rgba(0,0,0,.25)"; // tertiary text / micro-labels / separators
-// Alternating section tints: odd sections show the base #F2F0EB, even sections
-// are darkened ~3% so they read a touch deeper while letting the grain/orbs show through.
-const EVEN_BG = "rgba(0,0,0,0.03)";
-
 export default function Home() {
   const reduce = useReducedMotion();
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -137,6 +133,21 @@ export default function Home() {
         }}
       />
 
+      {/* Soft top fade behind the nav so it blends into the background (no hard edge) */}
+      <div
+        aria-hidden
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 120,
+          zIndex: 850,
+          background: "linear-gradient(to bottom, rgba(242,240,235,0.95) 0%, transparent 100%)",
+          pointerEvents: "none",
+        }}
+      />
+
       {/* NAV */}
       <nav
         style={{
@@ -150,8 +161,6 @@ export default function Home() {
           justifyContent: "space-between",
           padding: `16px ${PAD}`,
           background: "transparent",
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
         }}
       >
         <a href="#top" style={brandStyle}>
@@ -285,9 +294,6 @@ export default function Home() {
             right: 0,
             bottom: 0,
             zIndex: 2,
-            background: "#E6E3DC",
-            borderTop: HAIRLINE,
-            borderBottom: HAIRLINE,
             padding: "18px 0",
             overflow: "hidden",
             whiteSpace: "nowrap",
@@ -313,7 +319,7 @@ export default function Home() {
       </header>
 
       {/* EVENTOS */}
-      <section id="eventos" style={{ ...sectionStyle, background: EVEN_BG }}>
+      <section id="eventos" style={sectionStyle}>
         <div style={contentWrap}>
           <Reveal
             style={{
@@ -422,7 +428,7 @@ export default function Home() {
       </section>
 
       {/* SERVICIOS */}
-      <section id="servicios" style={{ ...sectionStyle, background: EVEN_BG }}>
+      <section id="servicios" style={sectionStyle}>
         <div style={contentWrap}>
           <Reveal style={{ marginBottom: HEADER_MB }}>
             <div style={eyebrow()}>Qué hacemos</div>
@@ -478,7 +484,6 @@ export default function Home() {
             <Reveal
               delay={120}
               style={{
-                background: "#E2DED6",
                 border: BORDER,
                 borderRadius: 16,
                 minHeight: "clamp(220px,32vh,320px)",

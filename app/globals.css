@@ -249,16 +249,16 @@ button:focus-visible {
   border-color: rgba(0, 0, 0, 0.15);
 }
 
-/* Integrated cards: base surface + border live here (not inline) so the
-   :hover can actually override them. Framer-motion whileHover owns the lift. */
+/* Cards: transparent so the fixed canvas (particles/orbs) shows through
+   continuously — only a hairline border delineates them. Hover lifts the border;
+   framer-motion whileHover owns the transform. */
 .service-card {
-  background: #eae7e0;
+  background: transparent;
   border: 0.5px solid rgba(0, 0, 0, 0.06);
-  transition: border-color 0.4s ease, background 0.4s ease;
+  transition: border-color 0.4s ease;
 }
 .service-card:hover {
   border-color: rgba(0, 0, 0, 0.15);
-  background: #e2ded6;
 }
 
 /* Gallery photos: the image zooms on hover (clipped by the tile's overflow)
