@@ -169,12 +169,24 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Stop every continuous/infinite decorative animation: background orbs,
+     hero blob drifts and the marquee ticker. */
   [style*="orbDiagonal"],
   [style*="orbCircular"],
   [style*="orbVertical"],
   [style*="orbWander"],
-  [style*="orbSway"] {
+  [style*="orbSway"],
+  [style*="drift1"],
+  [style*="drift2"],
+  [style*="drift3"],
+  [style*="marquee"] {
     animation: none !important;
+  }
+  /* No zoom on gallery hover when reduced motion is requested. */
+  .gallery-photo .gallery-img,
+  .gallery-photo:hover .gallery-img {
+    transform: none !important;
+    transition: none !important;
   }
 }
 
