@@ -513,21 +513,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CONTACTO / FOOTER */}
-      <footer
-        id="contacto"
-        style={{
-          position: "relative",
-          zIndex: 2,
-          display: "flex",
-          flexDirection: "column",
-          padding: `32px ${PAD} 24px`,
-          borderTop: HAIRLINE,
-          overflow: "hidden",
-          scrollSnapAlign: "end",
-          scrollSnapStop: "always",
-        }}
-      >
+      {/* CONTACTO (CTA) — full-height snap section, same treatment as the rest */}
+      <section id="contacto" style={sectionStyle}>
         <Reveal style={{ position: "relative", maxWidth: 820, margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontFamily: SPACE, fontWeight: 600, fontSize: "clamp(40px,7vw,88px)", lineHeight: 0.92, letterSpacing: "-.03em", margin: 0, color: "#0a0a0a", textWrap: "balance" }}>
             ¿Listo para el directo?
@@ -552,37 +539,48 @@ export default function Home() {
             Reserva tu evento
           </Magnetic>
         </Reveal>
-        <div
+
+        {/* Footer: pinned to the bottom of this section, NOT its own snap stop */}
+        <footer
           style={{
-            position: "relative",
-            maxWidth: 1240,
-            width: "100%",
-            margin: "32px auto 0",
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 16,
-            paddingTop: 20,
-            borderTop: HAIRLINE,
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: 0,
+            padding: `0 ${PAD} 24px`,
           }}
         >
-          <a href="#top" style={brandStyle}>
-            <Image src="/EVENTIME sound LOGO.png" alt="Eventime Sound" height={28} width={117} />
-          </a>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 11, letterSpacing: "1px" }}>
-            {footerLinks.map(([href, label], i) => (
-              <span key={label} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                {i > 0 && <span style={{ color: FAINT }}>·</span>}
-                <a href={href} className="footer-link">
-                  {label}
-                </a>
-              </span>
-            ))}
+          <div
+            style={{
+              maxWidth: 1240,
+              width: "100%",
+              margin: "0 auto",
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 16,
+              paddingTop: 20,
+              borderTop: HAIRLINE,
+            }}
+          >
+            <a href="#top" style={brandStyle}>
+              <Image src="/EVENTIME sound LOGO.png" alt="Eventime Sound" height={28} width={117} />
+            </a>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 11, letterSpacing: "1px" }}>
+              {footerLinks.map(([href, label], i) => (
+                <span key={label} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  {i > 0 && <span style={{ color: FAINT }}>·</span>}
+                  <a href={href} className="footer-link">
+                    {label}
+                  </a>
+                </span>
+              ))}
+            </div>
+            <div style={{ fontSize: 11, color: MUTED }}>© 2026 Eventime Sound</div>
           </div>
-          <div style={{ fontSize: 11, color: MUTED }}>© 2026 Eventime Sound</div>
-        </div>
-      </footer>
+        </footer>
+      </section>
     </div>
   );
 }
