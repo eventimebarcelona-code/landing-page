@@ -356,7 +356,6 @@ export default function Home() {
               <Link key={ev.name} href={ev.href} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
                 <Reveal
                   delay={i * 80}
-                  whileHover={{ y: -4 }}
                   className="service-card"
                   style={{
                     display: "flex",
@@ -441,7 +440,6 @@ export default function Home() {
               <Reveal
                 key={sv.num}
                 delay={sv.delay}
-                whileHover={{ y: -4 }}
                 className="service-card"
                 style={{ padding: 40, borderRadius: 16 }}
               >
