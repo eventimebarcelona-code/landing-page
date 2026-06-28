@@ -43,6 +43,10 @@ export function Particles() {
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const fine = window.matchMedia("(pointer:fine)").matches;
+    // Fewer particles and no cursor gravity on mobile (performance).
+    const mobile = window.matchMedia("(max-width: 767px)").matches;
+    const count = mobile ? 30 : COUNT;
+    const depth = mobile ? 5 : DEPTH;
 
     let width = 0;
     let height = 0;
@@ -51,8 +55,8 @@ export function Particles() {
     const cursor = { x: -9999, y: -9999 };
 
     const seed = () => {
-      particles = Array.from({ length: COUNT }, (_, i) => {
-        const depth = i < DEPTH;
+      particles = Array.from({ length: count }, (_, i) => {
+        const isDepth = i < depth;
         return {
           x: Math.random() * width,
           y: Math.random() * height,
@@ -60,8 +64,8 @@ export function Particles() {
           vy: rand(-0.13, 0.13),
           ox: 0,
           oy: 0,
-          r: depth ? rand(4, 5.5) : rand(1.5, 4),
-          o: depth ? 0.25 : rand(0.25, 0.5),
+          r: isDepth ? rand(4, 5.5) : rand(1.5, 4),
+          o: isDepth ? 0.25 : rand(0.25, 0.5),
           color: COLORS[Math.floor(Math.random() * COLORS.length)],
         };
       });
@@ -104,7 +108,7 @@ export function Particles() {
         const dx = cursor.x - (p.x + p.ox);
         const dy = cursor.y - (p.y + p.oy);
         const dist = Math.hypot(dx, dy);
-        if (dist < INFLUENCE) {
+        if (!mobile && dist < INFLUENCE) {
           const pull = FORCE * (1 - dist / INFLUENCE);
           p.ox += dx * pull;
           p.oy += dy * pull;
@@ -131,7 +135,7 @@ export function Particles() {
       cursor.x = -9999;
       cursor.y = -9999;
     };
-    if (fine && !reduce) {
+    if (fine && !reduce && !mobile) {
       window.addEventListener("mousemove", onMove, { passive: true });
       window.addEventListener("mouseout", onLeave, { passive: true });
     }

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, type CSSProperties } from "react";
+import { useRef, useState, type CSSProperties } from "react";
 import {
   motion,
   useReducedMotion,
@@ -81,6 +81,7 @@ const MUTED = "rgba(0,0,0,.45)"; // secondary text
 const FAINT = "rgba(0,0,0,.25)"; // tertiary text / micro-labels / separators
 export default function Home() {
   const reduce = useReducedMotion();
+  const [menuOpen, setMenuOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   // The main wrapper is the scroll container, so useScroll must target it
   // (not the window) for the progress bar, nav blur and hero parallax.
@@ -150,6 +151,7 @@ export default function Home() {
 
       {/* NAV */}
       <nav
+        className="site-nav"
         style={{
           position: "fixed",
           top: 0,
@@ -164,7 +166,7 @@ export default function Home() {
         }}
       >
         <a href="#top" style={brandStyle}>
-          <Image src="/EVENTIME sound LOGO.png" alt="Eventime Sound" height={36} width={150} priority />
+          <Image className="nav-logo" src="/EVENTIME sound LOGO.png" alt="Eventime Sound" height={36} width={150} priority />
         </a>
         <div style={{ display: "flex", alignItems: "center", gap: "clamp(20px,3vw,40px)" }}>
           <div className="nav-links" style={navLinkRow}>
@@ -192,13 +194,61 @@ export default function Home() {
           </div>
           <Magnetic
             href="#contacto"
-            className="nav-link"
+            className="nav-link nav-contacto"
             style={{ fontSize: 11, fontWeight: 400, letterSpacing: "2px", textDecoration: "none" }}
           >
             Contacto
           </Magnetic>
+          <button
+            className="nav-hamburger"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Abrir menú"
+            style={{ background: "none", border: "none", padding: 4, fontSize: 22, lineHeight: 1, color: "#0a0a0a", cursor: "pointer" }}
+          >
+            ☰
+          </button>
         </div>
       </nav>
+
+      {/* MOBILE MENU OVERLAY */}
+      {menuOpen && (
+        <div
+          className="nav-overlay"
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 1100,
+            background: "#F2F0EB",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 28,
+          }}
+        >
+          <button
+            onClick={() => setMenuOpen(false)}
+            aria-label="Cerrar menú"
+            style={{ position: "absolute", top: 18, right: 24, background: "none", border: "none", fontSize: 24, lineHeight: 1, color: "#0a0a0a", cursor: "pointer" }}
+          >
+            ✕
+          </button>
+          {navLinks.map(([href, label]) => (
+            <a key={href} href={href} className="nav-overlay-link" onClick={() => setMenuOpen(false)}>
+              {label}
+            </a>
+          ))}
+          <a href="https://www.artspacebarcelona.com" target="_blank" rel="noopener noreferrer" className="nav-overlay-link" onClick={() => setMenuOpen(false)}>
+            Estudio
+          </a>
+          <a href="https://www.zerogamesrecords.es" target="_blank" rel="noopener noreferrer" className="nav-overlay-link" onClick={() => setMenuOpen(false)}>
+            Label
+          </a>
+          <a href="#contacto" className="nav-overlay-link" onClick={() => setMenuOpen(false)}>
+            Contacto
+          </a>
+        </div>
+      )}
 
       {/* HERO */}
       <header
@@ -222,9 +272,10 @@ export default function Home() {
           <div style={blob("#0a0a0a", { top: "10%", right: "-10%", width: 600, height: 600, opacity: 0.04, animation: "drift2 23s ease-in-out infinite" })} />
           <div style={blob("#0a0a0a", { bottom: "-15%", left: "30%", width: 560, height: 560, opacity: 0.04, animation: "drift3 21s ease-in-out infinite" })} />
         </motion.div>
-        <motion.div style={{ position: "relative", zIndex: 2, display: "flex", flexDirection: "column", alignItems: "center", y: contentY, opacity: contentOpacity }}>
+        <motion.div className="hero-content" style={{ position: "relative", zIndex: 2, display: "flex", flexDirection: "column", alignItems: "center", y: contentY, opacity: contentOpacity }}>
           <div style={{ ...eyebrow(), marginBottom: 34 }}>Productora de eventos en directo</div>
           <h1
+            className="hero-title"
             style={{
               fontFamily: SPACE,
               fontWeight: 600,
@@ -240,6 +291,7 @@ export default function Home() {
             <span style={{ display: "block", color: MUTED }}>SOUND</span>
           </h1>
           <p
+            className="hero-sub"
             style={{
               maxWidth: 440,
               fontSize: "clamp(15px,2vw,18px)",
@@ -252,7 +304,7 @@ export default function Home() {
           >
             Producción, sonido y line-ups que hacen vibrar a miles de personas.
           </p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 16, justifyContent: "center", marginTop: 44 }}>
+          <div className="hero-ctas" style={{ display: "flex", flexWrap: "wrap", gap: 16, justifyContent: "center", marginTop: 44 }}>
             <Magnetic
               href="#eventos"
               className="btn-grad"
@@ -300,6 +352,7 @@ export default function Home() {
           }}
         >
           <div
+            className="ticker-text"
             style={{
               display: "inline-flex",
               gap: 56,
@@ -522,6 +575,7 @@ export default function Home() {
                 <Counter
                   value={st.value}
                   suffix={st.suffix}
+                  className="stat-num"
                   style={{ fontFamily: BEBAS, fontWeight: 400, fontSize: "clamp(56px,7vw,92px)", lineHeight: 1, letterSpacing: ".01em", color: "#0a0a0a" }}
                 />
                 <div style={{ ...microLabel, marginTop: 14 }}>{st.label}</div>
@@ -532,9 +586,9 @@ export default function Home() {
       </section>
 
       {/* CONTACTO (CTA) — full-height snap section, same treatment as the rest */}
-      <section id="contacto" style={sectionStyle}>
+      <section id="contacto" className="contacto-section" style={sectionStyle}>
         <Reveal style={{ position: "relative", maxWidth: 820, margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ fontFamily: SPACE, fontWeight: 600, fontSize: "clamp(40px,7vw,88px)", lineHeight: 0.92, letterSpacing: "-.03em", margin: 0, color: "#0a0a0a", textWrap: "balance" }}>
+          <h2 className="cta-title" style={{ fontFamily: SPACE, fontWeight: 600, fontSize: "clamp(40px,7vw,88px)", lineHeight: 0.92, letterSpacing: "-.03em", margin: 0, color: "#0a0a0a", textWrap: "balance" }}>
             ¿Listo para el directo?
           </h2>
           <p style={{ fontSize: "clamp(15px,2vw,18px)", fontWeight: 300, color: MUTED, margin: "24px auto 40px", maxWidth: "44ch", lineHeight: 1.6 }}>
@@ -542,7 +596,7 @@ export default function Home() {
           </p>
           <Magnetic
             href="mailto:hola@eventimesound.com"
-            className="contact-cta"
+            className="contact-cta cta-button"
             style={{
               display: "inline-block",
               fontSize: 16,
@@ -560,6 +614,7 @@ export default function Home() {
 
         {/* Footer: pinned to the bottom of this section, NOT its own snap stop */}
         <footer
+          className="site-footer"
           style={{
             position: "absolute",
             left: 0,
@@ -569,6 +624,7 @@ export default function Home() {
           }}
         >
           <div
+            className="footer-bar"
             style={{
               maxWidth: 1240,
               width: "100%",

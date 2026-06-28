@@ -66,6 +66,7 @@ export default function IceDylanPage() {
       {/* No nav bar on this page — only a floating back button over the photo */}
       <Link
         href="/"
+        className="back-btn"
         style={{
           position: "fixed",
           top: 32,

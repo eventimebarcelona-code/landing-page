@@ -15,6 +15,7 @@ type CounterProps = {
   value: number;
   suffix?: string;
   style?: CSSProperties;
+  className?: string;
 };
 
 const EASE_OUT_CUBIC = [0.33, 1, 0.68, 1] as const;
@@ -23,7 +24,7 @@ const EASE_OUT_CUBIC = [0.33, 1, 0.68, 1] as const;
  * Counts up from 0 to `value` the first time it scrolls into view.
  * Replaces the requestAnimationFrame counter from the original design.
  */
-export function Counter({ value, suffix = "", style }: CounterProps) {
+export function Counter({ value, suffix = "", style, className }: CounterProps) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.6 });
   const reduce = useReducedMotion();
@@ -44,7 +45,7 @@ export function Counter({ value, suffix = "", style }: CounterProps) {
   }, [inView, reduce, value, count]);
 
   return (
-    <motion.div ref={ref} style={style}>
+    <motion.div ref={ref} className={className} style={style}>
       {text}
     </motion.div>
   );

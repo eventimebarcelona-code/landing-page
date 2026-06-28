@@ -362,9 +362,28 @@ button:focus-visible {
 }
 
 /* ---------- Responsive: collapse complex grids on mobile ---------- */
+/* ---------- Mobile menu (hamburger + fullscreen overlay) ---------- */
+.nav-hamburger {
+  display: none;
+}
+.nav-overlay-link {
+  font-family: var(--font-space), sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #0a0a0a;
+  text-decoration: none;
+}
+
+/* ---------- Tablet (<=860px): collapse grids, swap nav for hamburger ---------- */
 @media (max-width: 860px) {
-  .nav-links {
+  .nav-links,
+  .nav-contacto {
     display: none !important;
+  }
+  .nav-hamburger {
+    display: block !important;
   }
   .scroll-dots {
     display: none !important;
@@ -385,7 +404,7 @@ button:focus-visible {
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 24px !important;
   }
-  /* Event detail: stack the photo above the content on small screens. */
+  /* Event detail: stack the photo above the content. */
   .event-photo {
     position: relative !important;
     width: 100% !important;
@@ -395,5 +414,136 @@ button:focus-visible {
     margin-left: 0 !important;
     width: 100% !important;
     padding: 32px 24px 64px !important;
+  }
+}
+
+/* ---------- Mobile (<=767px): full responsive layout ---------- */
+@media (max-width: 767px) {
+  /* 11 + 12: no custom cursor, spotlight or side dots on mobile */
+  [data-cursor-dot],
+  [data-cursor-ring],
+  [data-spotlight],
+  .cursor-ripple,
+  .scroll-dots {
+    display: none !important;
+  }
+
+  /* 13: free scroll (no snap); sections size to their content */
+  #scroll-root {
+    scroll-snap-type: none !important;
+    scroll-behavior: auto !important;
+  }
+  #scroll-root > header,
+  #scroll-root > section {
+    height: auto !important;
+    min-height: auto !important;
+    scroll-snap-align: none !important;
+    scroll-snap-stop: normal !important;
+    scroll-margin-top: 64px;
+    padding: 56px 24px !important;
+  }
+  #scroll-root > #top {
+    min-height: 100vh !important;
+    padding: 80px 24px 90px !important;
+  }
+  #scroll-root > #nosotros,
+  #scroll-root > #contacto {
+    padding: 48px 24px !important;
+  }
+
+  /* 1: nav */
+  .site-nav {
+    padding: 16px 24px !important;
+  }
+  .nav-logo {
+    height: 32px !important;
+    width: auto !important;
+  }
+
+  /* 2: hero */
+  .hero-content {
+    width: 100% !important;
+  }
+  .hero-title {
+    font-size: clamp(48px, 10vw, 72px) !important;
+  }
+  .hero-sub {
+    font-size: 15px !important;
+    max-width: 100% !important;
+  }
+  .hero-ctas {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 12px !important;
+  }
+  .hero-ctas a {
+    width: 100% !important;
+    text-align: center !important;
+    box-sizing: border-box;
+  }
+
+  /* 3: stats 2x2 */
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px !important;
+  }
+  .stat-num {
+    font-size: 36px !important;
+  }
+
+  /* 4: ticker */
+  .ticker-text {
+    font-size: 16px !important;
+  }
+
+  /* 5 + 7: cards full width, padding 24 */
+  .service-card {
+    padding: 24px !important;
+  }
+
+  /* 6: gallery single column, fixed-height photos */
+  .gallery-grid {
+    grid-template-columns: 1fr !important;
+    grid-auto-rows: 200px !important;
+  }
+  .gallery-photo {
+    grid-row: auto !important;
+    height: 200px !important;
+  }
+
+  /* 9: CTA */
+  .cta-title {
+    font-size: 36px !important;
+  }
+  .cta-button {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    box-sizing: border-box;
+  }
+
+  /* 10: footer stacked + centered, in normal flow */
+  .site-footer {
+    position: static !important;
+    padding: 0 !important;
+    margin-top: 48px;
+  }
+  .footer-bar {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 24px !important;
+  }
+
+  /* 15: event detail page */
+  .event-photo {
+    height: 50vh !important;
+  }
+  .event-content {
+    padding: 24px !important;
+  }
+  .back-btn {
+    top: 16px !important;
+    left: 16px !important;
   }
 }
