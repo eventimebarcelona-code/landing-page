@@ -12,11 +12,10 @@ import {
 import { Reveal } from "./components/Reveal";
 import { Counter } from "./components/Counter";
 import { Magnetic } from "./components/Magnetic";
-import { Cursor } from "./components/Cursor";
 import { ScrollDots } from "./components/ScrollDots";
 import { AmbientOrbs } from "./components/AmbientOrbs";
-import { Particles } from "./components/Particles";
 import { GrainOverlay } from "./components/GrainOverlay";
+import { DeferredFX } from "./components/DeferredFX";
 
 const events = [
   { date: "30 AGO", name: "Ya Ice Dilan", venue: "Downtown · Barcelona", status: "Entradas", href: "/eventos/ice-dylan" },
@@ -115,9 +114,8 @@ export default function Home() {
       }}
     >
       <AmbientOrbs />
-      <Particles />
       <GrainOverlay />
-      <Cursor />
+      <DeferredFX />
       <ScrollDots />
 
       <motion.div
@@ -468,7 +466,9 @@ export default function Home() {
                   src={g.src}
                   alt="Eventime Sound en directo"
                   fill
-                  sizes="(max-width: 860px) 50vw, 50vw"
+                  loading="lazy"
+                  quality={75}
+                  sizes="(max-width: 767px) 100vw, 50vw"
                   className="gallery-img"
                   style={{ objectFit: "cover" }}
                 />

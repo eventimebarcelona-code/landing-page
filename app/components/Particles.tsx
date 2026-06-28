@@ -17,8 +17,7 @@ type P = {
   ox: number; // cursor-driven offset from home
   oy: number;
   r: number;
-  o: number;
-  color: string; // "r,g,b"
+  fill: string; // precomputed rgba() — cached so paint() does no per-frame work
 };
 
 const COLORS = ["10,10,10"]; // #0a0a0a
@@ -57,6 +56,8 @@ export function Particles() {
     const seed = () => {
       particles = Array.from({ length: count }, (_, i) => {
         const isDepth = i < depth;
+        const o = isDepth ? 0.25 : rand(0.25, 0.5);
+        const color = COLORS[Math.floor(Math.random() * COLORS.length)];
         return {
           x: Math.random() * width,
           y: Math.random() * height,
@@ -65,8 +66,7 @@ export function Particles() {
           ox: 0,
           oy: 0,
           r: isDepth ? rand(4, 5.5) : rand(1.5, 4),
-          o: isDepth ? 0.25 : rand(0.25, 0.5),
-          color: COLORS[Math.floor(Math.random() * COLORS.length)],
+          fill: `rgba(${color},${o})`,
         };
       });
     };
@@ -88,7 +88,7 @@ export function Particles() {
       for (const p of particles) {
         ctx.beginPath();
         ctx.arc(p.x + p.ox, p.y + p.oy, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${p.color},${p.o})`;
+        ctx.fillStyle = p.fill;
         ctx.fill();
       }
     };

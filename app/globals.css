@@ -94,17 +94,6 @@ button:focus-visible {
     transform: translateX(-50%);
   }
 }
-@keyframes cue {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 0.4;
-  }
-  50% {
-    transform: translateY(8px);
-    opacity: 1;
-  }
-}
 
 @media (pointer: coarse) {
   [data-cursor-dot],
@@ -246,14 +235,6 @@ button:focus-visible {
   text-underline-offset: 3px;
 }
 
-.btn-outline {
-  transition: background 0.25s, border-color 0.25s, color 0.25s;
-}
-.btn-outline:hover {
-  background: #0a0a0a;
-  border-color: #0a0a0a;
-  color: #f0eee8;
-}
 
 .btn-grad {
   transition: box-shadow 0.3s, transform 0.3s;

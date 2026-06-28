@@ -3,9 +3,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { AmbientOrbs } from "../../components/AmbientOrbs";
-import { Particles } from "../../components/Particles";
 import { GrainOverlay } from "../../components/GrainOverlay";
-import { Cursor } from "../../components/Cursor";
+import { DeferredFX } from "../../components/DeferredFX";
 
 export const metadata: Metadata = {
   title: "Ya Ice Dilan — Eventime Sound",
@@ -59,9 +58,8 @@ export default function IceDylanPage() {
       }}
     >
       <AmbientOrbs />
-      <Particles />
       <GrainOverlay />
-      <Cursor />
+      <DeferredFX />
 
       {/* No nav bar on this page — only a floating back button over the photo */}
       <Link
@@ -98,6 +96,7 @@ export default function IceDylanPage() {
           alt="Ya Ice Dilan"
           fill
           priority
+          quality={75}
           sizes="(max-width: 860px) 100vw, 40vw"
           style={{ objectFit: "cover" }}
         />
