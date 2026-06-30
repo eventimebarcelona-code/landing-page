@@ -103,6 +103,23 @@ button:focus-visible {
   }
 }
 
+/* Hide the native cursor everywhere on desktop so only the custom cursor shows.
+   Applies on all pages (globals.css is imported in the root layout). Not applied
+   below 768px, where the custom cursor is disabled and the native one is needed. */
+@media (min-width: 768px) {
+  * {
+    cursor: none !important;
+  }
+  a,
+  button,
+  [role="button"],
+  input,
+  select,
+  textarea {
+    cursor: none !important;
+  }
+}
+
 /* ---------- Cursor click ripple ---------- */
 @keyframes cursorRipple {
   from {
